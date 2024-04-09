@@ -17,18 +17,21 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   late AnimationController _controller;
+  late AnimationController _controller2;
 
   @override
   void initState() {
     // TODO: implement initState
 
     _controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 1))
-          ..addListener(() {
-            log('Value: ${_controller.value}');
-          });
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
+    _controller2 = AnimationController(
+      duration: const Duration(milliseconds: 300),
+      vsync: this,
+    );
+    _controller2.forward();
     _controller.forward();
 
     super.initState();
@@ -88,6 +91,7 @@ class _SignupScreenState extends State<SignupScreen>
                 ? IconButton(
                     onPressed: () {
                       _controller.forward();
+                      _controller2.forward();
                       final value =
                           Theme.of(context).brightness == Brightness.light;
                       setState(() {
@@ -106,6 +110,7 @@ class _SignupScreenState extends State<SignupScreen>
                 : IconButton(
                     onPressed: () {
                       _controller.reverse();
+                      _controller2.reverse();
                       final value =
                           Theme.of(context).brightness == Brightness.light;
                       setState(() {
@@ -234,6 +239,90 @@ class _SignupScreenState extends State<SignupScreen>
 
                   //
                   )),
+          SizedBox(
+            height: 150,
+            width: double.maxFinite,
+            child: Stack(
+              children: [
+                Align(
+                  alignment: Alignment.bottomLeft,
+                  child: const Icon(
+                    Icons.star,
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    size: 22,
+                  ).animate(controller: _controller2).scaleXY(
+                        begin: 1.0,
+                        end: 0.1,
+                      ),
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: const Icon(
+                    Icons.star,
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    size: 22,
+                  ).animate(controller: _controller2).scaleXY(
+                        begin: 1.0,
+                        end: 0.1,
+                      ),
+                ),
+                Align(
+                  alignment: const Alignment(.34, 1.7),
+                  child: const Icon(
+                    Icons.star,
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    size: 22,
+                  ).animate(controller: _controller2).scaleXY(
+                        begin: 1.0,
+                        end: 0.1,
+                      ),
+                ),
+              ],
+            ),
+          ),
+          Animate(
+            // delay: const Duration(milliseconds: 3000),
+            controller: _controller2,
+            effects: const [
+              SlideEffect(
+                duration: Duration(milliseconds: 1000),
+                begin: Offset(3, 0),
+                end: Offset(0, 0),
+              )
+            ],
+            child: const SizedBox(
+              height: 150,
+              width: double.maxFinite,
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.bottomLeft,
+                    child: Icon(
+                      Icons.cloud,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      size: 55,
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Icon(
+                      Icons.cloud,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      size: 66,
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment(.34, 1.7),
+                    child: Icon(
+                      Icons.cloud,
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      size: 70,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
           Visibility(
             visible: true,
             child: Container(
