@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:math' as math;
 
 import 'package:animatedlogin/main.dart';
@@ -245,33 +244,33 @@ class _SignupScreenState extends State<SignupScreen>
             child: Stack(
               children: [
                 Align(
-                  alignment: Alignment.bottomLeft,
+                  alignment: Alignment.centerLeft,
                   child: const Icon(
                     Icons.star,
                     color: Color.fromARGB(255, 255, 255, 255),
-                    size: 22,
+                    size: 15,
                   ).animate(controller: _controller2).scaleXY(
                         begin: 1.0,
                         end: 0.1,
                       ),
                 ),
                 Align(
-                  alignment: Alignment.centerRight,
+                  alignment: Alignment.bottomRight,
                   child: const Icon(
                     Icons.star,
                     color: Color.fromARGB(255, 255, 255, 255),
-                    size: 22,
+                    size: 15,
                   ).animate(controller: _controller2).scaleXY(
                         begin: 1.0,
                         end: 0.1,
                       ),
                 ),
                 Align(
-                  alignment: const Alignment(.34, 1.7),
+                  alignment: const Alignment(-.34, 2),
                   child: const Icon(
                     Icons.star,
                     color: Color.fromARGB(255, 255, 255, 255),
-                    size: 22,
+                    size: 15,
                   ).animate(controller: _controller2).scaleXY(
                         begin: 1.0,
                         end: 0.1,
